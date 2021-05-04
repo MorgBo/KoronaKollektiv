@@ -17,9 +17,9 @@ error_numb = 3      # If booking == errornumb, feedback 3 to ESP32
 path = "/home/pi/Python/test.csv"
 c = 1
 
-pingid = "842" # Key til pinge-signal fra ESP32
-pongid = "9383" # Key til feedback til ESP32
-token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI1NTEzIn0.8lxABdwyikpAxC9kvH2hnwkWl_NC9u1tXWaJp9WCgFw" # Token brukeren til Lindb
+pingid = "YOUR_KEY" # Key til pinge-signal fra ESP32
+pongid = "YOUR_KEY2" # Key til feedback til ESP32
+token = "YOUR_TOKEN" # Token brukeren til Lindb
 
 
 # Grunnet dagens GDPR reglement, ønsket ikke gruppen å lagre informasjon om hustanden, og sletter derfor
