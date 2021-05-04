@@ -1,5 +1,14 @@
 /*
----------------------------------- Le_Counsjie v0.4 ----------------------------------
+---------------------------------------------------- Le_Counsjie v1.0 -------------------------------------------------------
+Dette er kode for den håndholdte konsollen. Den består av 12 tilstander.
+Oppkoblingen er som følger:
+  - joystick
+      - 3.3V, GND, pin 34, 33, 32
+  - I2C overgang
+      - 5V, GND, pin 22, 21
+1. Du trenger to biblioteker
+2. Bytt internettnavn og passord under CicusOfThings relatert
+3. Endre UserID til din ESP32 bruker, Tall fra 0 til 9
 */
 
 //Biblioteker
@@ -7,13 +16,13 @@
 #include <LiquidCrystal_I2C.h>
 
 //CircusOfThings relatert
-char ssid[] = "YOUR_SSID";
-char password[] = "YOUR_SSIDPASSWORD";
-char token[] = "YOUR_TOKEN";
+char ssid[] = "Pannekake";//"Free pornhub premium";//"Pannekake";
+char password[] = "12345678";//"mariuserkul";//"12345678";
+char token[] = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI1NTEzIn0.8lxABdwyikpAxC9kvH2hnwkWl_NC9u1tXWaJp9WCgFw"; //legg inn token her
 char server[] = "www.circusofthings.com";
-char pingKey[] = "YOUR_KEY";//legg til keys her
-char pongKey[] = "YOUR_KEY2";
-char doorKey[] = "YOUR_KEY3";
+char pingKey[] = "842";//legg til keys her
+char pongKey[] = "9383";
+char doorKey[] = "850";
 const int UserID = 1;//endre denne til din ESP-ID
 CircusESP32Lib circusESP32(server,ssid,password);
 
@@ -24,7 +33,7 @@ LiquidCrystal_I2C lcd(0x27, lcdColumns, lcdRows);  // set LCD address (må scann
 
 //joystick
 const int x = 34;
-const int y = 35;
+const int y = 33;
 const int s = 32;
 
 //tilstander:
@@ -58,7 +67,7 @@ const int middlepress = 3;
 const int t = 300;
 
 //misc
-int state = livingroom_menu;
+int state = initialize;
 int buttonpress = 0;
 int end = 0;
 int hours = 12;
@@ -68,25 +77,14 @@ bool SE = true;
 
 void setup() {
   Serial.begin(115200);
-  //INPUT/JOYSTICK
   pinMode(x,INPUT);
   pinMode(y,INPUT);
-  pinMode(s,INPUT_PULLUP);
+  pinMode(s,INPUT_PULLUP);//joystick har antagelig allerede innebygd pullup
   circusESP32.begin();
   Serial.println("Le Counsjie is ready for your commands");
-
   lcd.init();
   // turn on LCD backlight                      
   lcd.backlight();
-}
-void checkDoorbell() {
-  int door = circusESP32.read(doorKey, token);
-  if (door > 0) {
-    lcd.clear();
-    displayroom("RING RING RING");
-    delay(5000);
-    circusESP32.write(doorKey, 0, token);
-  }
 }
 
 void loop() {
@@ -430,7 +428,7 @@ void loop() {
   }
 }
 
-/*---------------------- FUNKSJONER ----------------------*/
+/*------------------------------------------ FUNKSJONER -----------------------------------------*/
 
 //Joystick
 //position = 0 --> center
@@ -471,35 +469,33 @@ int joystick() {
 void display(int guests, int hour, int kvarter, int end) {
   int endTid = end*15;
   int kvarterTid = kvarter*15;
-  }
-
   if (guests > 5) {
       guests = 5;
     }
-    if (guests < 0) {
-      guests = 0;
-    }
+  if (guests < 0) {
+    guests = 0;
+  }
 
-    if (hour > 23){
-      hour = 0;
-    }
-    if (hour < 0){
-      hour = 23;
-    }
+  if (hour > 23){
+    hour = 0;
+  }
+  if (hour < 0){
+    hour = 23;
+  }
 
-    if (kvarterTid > 45){
-      kvarterTid = 0;
-    }
-    if (kvarterTid < 0){
-      kvarterTid = 0;
-    }
-    if (endTid < 0){
-      endTid = 0;
-    }
-    if (endTid > 405){
-      endTid = 0;
-    }
-  
+  if (kvarterTid > 45){
+    kvarterTid = 0;
+  }
+  if (kvarterTid < 0){
+    kvarterTid = 0;
+  }
+  if (endTid < 0){
+    endTid = 0;
+  }
+  if (endTid > 405){
+    endTid = 0;
+  }
+
   lcd.setCursor(0, 0);
   lcd.print("Fra");
   lcd.setCursor(0, 1);
@@ -507,15 +503,23 @@ void display(int guests, int hour, int kvarter, int end) {
   lcd.setCursor(11, 0);
   lcd.print("Pers:");
   
-  if(hour<10) lcd.setCursor(4, 0); lcd.print("0");lcd.setCursor(5, 0); lcd.print(hour);
+  if(hour<10) {
+    lcd.setCursor(4, 0);
+    lcd.print("0");lcd.setCursor(5, 0);
+    lcd.print(hour);
+  }
   
-  if(hour>=10) lcd.setCursor(4, 0);lcd.print(hour);
-  
+  if(hour>=10){
+    lcd.setCursor(4, 0);
+    lcd.print(hour);
+  }
   lcd.setCursor(6,0);
   lcd.print(":");
 
   lcd.setCursor(8, 0);
-  if(kvarterTid<10)lcd.print("0");
+  if(kvarterTid<10) {
+    lcd.print("0");
+  }
   lcd.setCursor(7, 0);
   lcd.print(kvarterTid);
   
@@ -649,5 +653,15 @@ void pongChecker() {
       displayroom("Venter pa CoT");
       delay(t);
     }
+  }
+}
+//Ringeklokke
+void checkDoorbell() {
+  int door = circusESP32.read(doorKey, token);
+  if (door > 0) {
+    lcd.clear();
+    displayroom("RING RING RING");
+    delay(5000);
+    circusESP32.write(doorKey, 0, token);
   }
 }
