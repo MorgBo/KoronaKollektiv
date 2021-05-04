@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Apr 15 12:51:13 2021
-
-@author: chris
-"""
 
 import json
 from datetime import datetime, timedelta
@@ -17,8 +11,8 @@ import time
 Skrive strømforbruk, forbruk og pris per uke til CoT!
 """
 
-key_sunproduction = "14680"
-token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI1NTE0In0.aR3lg73MysbYXlePTMv9CMHVzHYOYLIj5QC_A2HmZSs"
+key_sunproduction = "YOUR_KEY"
+token = "YOUR_TOKEN"
 
 def write_to_cot(value):
     data = {"Key": key_sunproduction, "Token": token, "Value": value }
