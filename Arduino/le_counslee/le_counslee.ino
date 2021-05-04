@@ -10,7 +10,7 @@
 
 // Informasjon om internett-tilkobling og tilkobling til CoT.
 char ssid[] = "YOUR_SSID";  
-char password[] = "YOUR_PASSWORD";
+char password[] = "YOUR_SSIDPASSWORD";
 char token[] = "YOUR_TOKEN";
 char server[] = "www.circusofthings.com";
 char autoKey[] = "YOUR_KEY";
