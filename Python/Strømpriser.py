@@ -11,9 +11,9 @@ import requests
 import json
 import time
 
-key_price = "14457"
-key_week = "21796"
-token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI1NTE0In0.aR3lg73MysbYXlePTMv9CMHVzHYOYLIj5QC_A2HmZSs"
+key_price = "YOUR_KEY"
+key_week = "YOUR_KEY2"
+token = "YOUR_TOKEN"
 
 def write_to_cot(key, units):
     data = {"Key": key, "Token": token, "Value": units }
@@ -76,7 +76,7 @@ while True:
     eur = df["OBS_VALUE"]
     date = df["TIME_PERIOD"]
     
-    client = EntsoePandasClient(api_key = "9e978604-41d5-4112-a3f2-09c836d4e5a5")
+    client = EntsoePandasClient(api_key = "YOUR_ENTSOE_API-CODE")
     
     # Fordelen ved å velge timezone er at den automatisk justerer CET til sommertidsudo 
     start = pd.Timestamp(today, tz = "Europe/Brussels")
