@@ -23,13 +23,13 @@ Koden er en tilstandsmaskin med 3 tilstander:
 #include <DHT.h>
 
 //CoT setup
-char ssid[] = "Pannekake";//Wifi navn
-char password[] =  "12345678";//wifi passord
-char token[] = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI1NTEzIn0.8lxABdwyikpAxC9kvH2hnwkWl_NC9u1tXWaJp9WCgFw";//CoT token
+char ssid[] = "YOUR_SSID";//Wifi navn
+char password[] =  "YOUR_SSIDPASSWORD";//wifi passord
+char token[] = "YOUR_TOKEN";//CoT token
 char server[] = "www.circusofthings.com";
-char temperature_key[] = "14436";//finner på CoT
-char humidity_key[] = "2119";
-char fan_key[] = "8431";
+char temperature_key[] = "YOUR_KEY";//finner på CoT
+char humidity_key[] = "YOUR_KEY2";
+char fan_key[] = "YOUR_KEY3";
 CircusESP32Lib circusESP32(server,ssid,password);
 
 //Tilstander
