@@ -16,13 +16,13 @@ Oppkoblingen er som følger:
 #include <LiquidCrystal_I2C.h>
 
 //CircusOfThings relatert
-char ssid[] = "Pannekake";//"Free pornhub premium";//"Pannekake";
-char password[] = "12345678";//"mariuserkul";//"12345678";
-char token[] = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI1NTEzIn0.8lxABdwyikpAxC9kvH2hnwkWl_NC9u1tXWaJp9WCgFw"; //legg inn token her
+char ssid[] = "YOUR_SSID";
+char password[] = "YOUR_SSIDPASSWORD";
+char token[] = "YOUR_TOKEN"; //legg inn token her
 char server[] = "www.circusofthings.com";
-char pingKey[] = "842";//legg til keys her
-char pongKey[] = "9383";
-char doorKey[] = "850";
+char pingKey[] = "YOUR_KEY";//legg til keys her
+char pongKey[] = "YOUR_KEY2";
+char doorKey[] = "YOUR_KEY3";
 const int UserID = 1;//endre denne til din ESP-ID
 CircusESP32Lib circusESP32(server,ssid,password);
 
