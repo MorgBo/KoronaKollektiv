@@ -9,12 +9,12 @@
 #include <ESP32_Servo.h>
 
 // Informasjon om internett-tilkobling og tilkobling til CoT.
-char ssid[] = "Epstein didn't kill himself";   //"Kapteinen 2";    
-char password[] = "Kukktryne123";   //"Knullegutta?!123"; 
-char token[] = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI1MDEyIn0.lpTEQgxDfA0TIMX-R9kACMNU1Yt3fJbriQjkC7HrNZo";
+char ssid[] = "YOUR_SSID";  
+char password[] = "YOUR_PASSWORD";
+char token[] = "YOUR_TOKEN";
 char server[] = "www.circusofthings.com";
-char autoKey[] = "13780";
-char tempKey[] = "17342";
+char autoKey[] = "YOUR_KEY";
+char tempKey[] = "YOUR_KEY2";
 
 // Initierer CoT biblioteket
 CircusESP32Lib circusESP32(server, ssid, password);
