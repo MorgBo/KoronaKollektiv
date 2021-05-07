@@ -81,8 +81,10 @@ void loop() {
 
     if (tempC <= 21.0) {
     digitalWrite(ledGreen, 1);
+    servo.write(0);
     } else {
     digitalWrite(ledGreen, 0);
+    servo.write(180);
     }
   }
 
